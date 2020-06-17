@@ -1,0 +1,51 @@
+package org.gdp.contrast.server.core.resolver.impl;
+import org.gdp.contrast.server.core.model.Page;
+import org.gdp.contrast.server.core.resolver.PageResolver;
+import org.jsoup.nodes.Document;
+import java.util.HashMap;
+import java.util.Map;
+
+/**
+ * 解析页面使用
+ * process函数需要完成的有：
+ * 1.解析有用的信息，丢进去Page的List items中。之后save会进行存储！
+ * 2.解析新的 url ，丢进去Page的List  newUrlSeed中。
+ *
+ * @author heshiyuan
+ */
+public class TextPageResolver implements PageResolver {
+
+    /**
+     * 解析页面
+     * process函数需要完成的有：
+     * 1.解析有用的信息，丢进去Page的List items中。之后save会进行存储！
+     * @param page
+     * @return 自己
+     */
+    @Override
+    public Page process(Page page) {
+        Document doc = page.getDocument();
+
+        String title = doc.title();
+        String text = doc.text();
+        Map<String, String> items = new HashMap<String, String>();
+        items.put("title", title);
+        items.put("text", text);
+        items.put("url", page.getUrlSeed().getUrl());
+        page.setItems(items);
+        return page;
+    }
+
+
+    /**
+     * url进行处理！建议功能：在这里进行新种子的优先级的调整！
+     * 这里没有进行任何特殊的处理！ 因为我们推荐你使用正则处理（默认实现，在spider初始化的时候进行添加）！
+     *
+     * @param page
+     * @return 自己
+     */
+    @Override
+    public Page processNewUrlSeeds(Page page) {
+        return page;
+    }
+}
