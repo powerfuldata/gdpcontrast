@@ -18,8 +18,9 @@ public class ConsoleSaver implements Saver {
 
     @Override
     public Page save(Page page) {
+        log.info("【保存器】");
         Map<Object, Object> map = page.getItems();
-        map.forEach((k, v) -> log.info(k + " : " + v));
+        map.forEach((k, v) -> System.out.println(k + " : " + v));
         return page;
     }
 

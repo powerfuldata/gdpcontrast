@@ -54,9 +54,8 @@ public class Page {
     public List<UrlSeed> links() {
         List<UrlSeed> result = new ArrayList<>();
         Elements elements = document.select("a");
-        List<String> links = new ArrayList<String>(elements.size());
+        List<String> links = new ArrayList<>(elements.size());
         for (Element element0 : elements) {
-            log.debug(element0.attr("abs:href"));
             if (!StringUtil.isBlank(element0.baseUri())) {
                 links.add(element0.attr("abs:href"));
             } else {

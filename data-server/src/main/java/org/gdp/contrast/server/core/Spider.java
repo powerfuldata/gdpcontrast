@@ -184,6 +184,7 @@ public class Spider {
         log.info("【启动器】爬虫启动!");
         UrlSeed urlSeed = null;
         while (true) {
+            TimeSleep.sleep(10000);
             log.info("【启动器】当前线程池已完成:{}   运行中：{}  最大运行:{} 等待队列:{}",
                     pool.getCompletedTaskCount(),pool.getActiveCount(),pool.getPoolSize(),pool.getQueue().size());
             if (pool.getQueue().size() > pool.getCorePoolSize()) {
@@ -224,7 +225,7 @@ public class Spider {
 
         @Override
         public void run() {
-            log.debug("【执行器】线程:[" + Thread.currentThread().getName() + "]正在处理:" + urlSeed.getUrl());
+            log.info("【执行器】线程:[" + Thread.currentThread().getName() + "]正在处理:" + urlSeed.getUrl());
             log.info("【执行器】当前线程池已完成:{}   运行中：{}  最大运行:{} 等待队列:{}",
                     pool.getCompletedTaskCount(),pool.getActiveCount(),pool.getPoolSize(),pool.getQueue().size());
 
@@ -239,17 +240,19 @@ public class Spider {
             for (Iterator<UrlSeed> it = urlSeedList.iterator(); it.hasNext(); ) {
                 UrlSeed seed = it.next();
                 if (!regexRule.regex(seed.getUrl())) {
-                    log.debug("【执行器】{}不满足正则规则,移除此网址。",seed.getUrl());
+                    log.info("【执行器】{}不满足正则规则,移除此网址。",seed.getUrl());
                     it.remove();
+                }else{
+                    log.info("【执行器】解析到新网址，{}", seed.getUrl());
                 }
             }
             // 设置新的url种子
-            nowPage.setNewUrlSeed(urlSeedList);
+//            nowPage.setNewUrlSeed(urlSeedList);
             // 递归解析新地址里的页面
-            pageProcessor.processNewUrlSeeds(nowPage);
+//            pageProcessor.processNewUrlSeeds(nowPage);
 
             // 重新调度
-            nowPage.getNewUrlSeed().forEach(seed -> scheduler.push(seed));
+//            nowPage.getNewUrlSeed().forEach(seed -> scheduler.push(seed));
             // 存储器保存结果
             saver.save(nowPage);
         }

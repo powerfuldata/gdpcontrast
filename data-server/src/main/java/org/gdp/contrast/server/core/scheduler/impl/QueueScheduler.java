@@ -32,9 +32,9 @@ public class QueueScheduler implements Scheduler {
             return;
         if (urlSet.add(urlSeed)) {
             queue.add(urlSeed);
-        } else {
+        }/* else {
             log.info("【调度器】UrlSeed重复:{}",urlSeed.getUrl());
-        }
+        }*/
     }
     @Override
     public UrlSeed poll() {

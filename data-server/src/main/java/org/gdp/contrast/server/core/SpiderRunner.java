@@ -14,7 +14,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpiderRunner implements CommandLineRunner {
 //    public static final String url = "https://data.worldbank.org.cn/indicator/NY.GDP.MKTP.CD?most_recent_value_desc=true&view=chart" ;
-    public static final String url = "https://www.worldometers.info/gdp/gdp-by-country/" ;
+//    public static final String url = "https://www.worldometers.info/gdp/gdp-by-country/" ;
+    public static final String url = "http://statisticstimes.com/economy/countries-by-gdp.php" ;
     public static final String regexRule = "+http://.*.jianshu.com/.*";
     @Override
     public void run(String... args) throws Exception {
