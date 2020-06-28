@@ -18,7 +18,9 @@ public class PriorityQueueScheduler implements Scheduler {
     public static final int defaultPriority = 5;
     private Logger _logger = LoggerFactory.getLogger(getClass());
 
-    private PriorityBlockingQueue<UrlSeed> priorityQueue = new PriorityBlockingQueue<UrlSeed>(defaultPriority, (o1, o2) -> -((o1.getPriority() < o2.getPriority()) ? -1 : ((o1.getPriority() == o2.getPriority()) ? 0 : 1)));
+    private PriorityBlockingQueue<UrlSeed> priorityQueue = new PriorityBlockingQueue<UrlSeed>(defaultPriority, (o1, o2) ->
+            -(Long.compare(o1.getPriority(), o2.getPriority()))
+    );
     private Set<UrlSeed> urlSet = Collections.synchronizedSet(new HashSet<>());
 
     @Override

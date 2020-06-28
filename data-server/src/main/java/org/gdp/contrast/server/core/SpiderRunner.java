@@ -4,6 +4,7 @@ import org.gdp.contrast.server.core.resolver.impl.GdpPageResolver;
 import org.gdp.contrast.server.core.resolver.impl.TextPageResolver;
 import org.gdp.contrast.server.core.scheduler.impl.QueueScheduler;
 import org.gdp.contrast.server.core.storager.impl.ConsoleSaver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,12 +18,17 @@ public class SpiderRunner implements CommandLineRunner {
 //    public static final String url = "https://www.worldometers.info/gdp/gdp-by-country/" ;
     public static final String url = "http://statisticstimes.com/economy/countries-by-gdp.php" ;
     public static final String regexRule = "+http://.*.jianshu.com/.*";
+
+    @Autowired
+    GdpPageResolver gdpPageResolver;
+
+
     @Override
     public void run(String... args) throws Exception {
         Spider.build()
             .setScheduler(new QueueScheduler())
             .setDownloader(new HttpClientPoolDownloader())
-            .setProcessor(new GdpPageResolver())
+            .setProcessor(gdpPageResolver)
             .setSaver(new ConsoleSaver())
             .thread(5)
             .addUrlSeed(url)
