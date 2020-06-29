@@ -172,8 +172,22 @@
         #{item.countryEn},
         #{item.gdp},
         #{item.continentEn},
-        #{item.year},
+        #{item.year}
       </trim>
     </foreach>
   </insert>
+
+  <select id="selectList" resultType="org.gdp.contrast.server.core.model.GdpEntity">
+    select * from management.gdp;
+  </select>
+
+  <update id="batchUpdate" parameterType="list">
+    update management.gdp
+    set country_cn=case id
+    <foreach collection="list" item="item">
+      when #{item.id} then #{item.countryCn}
+    </foreach>
+    end;
+  </update>
+
 </mapper>

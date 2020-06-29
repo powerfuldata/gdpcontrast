@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Mapper
-//@Repository("gdpMapper")
 public interface GdpMapper {
     int deleteByPrimaryKey(Long id);
 
@@ -27,4 +26,17 @@ public interface GdpMapper {
      * @return
      */
     int batchInsertGdp(List<GdpEntity> gdpEntityList);
+
+    /**
+     * 查列表
+     * @return
+     */
+    List<GdpEntity> selectList();
+
+    /**
+     * 批量更新
+     * @param gdpEntityList
+     * @return
+     */
+    int batchUpdate(List<GdpEntity> gdpEntityList);
 }

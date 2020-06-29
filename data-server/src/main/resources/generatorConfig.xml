@@ -54,10 +54,14 @@
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
         <!-- tableName是数据库中的表名，domainObjectName是生成的JAVA模型名，后面的参数不用改，要生成更多的表就在下面继续加table标签 -->
-        <table tableName="gdp"
-               domainObjectName="GdpEntity"
-               mapperName="GdpMapper"
-               modelType=""
+        <table tableName="covid19_countries"
+               domainObjectName="CountryEntity"
+               mapperName="CountryMapper"
+               enableInsert="false"
+               enableSelectByPrimaryKey="true"
+               enableDeleteByPrimaryKey="false"
+               selectByPrimaryKeyQueryId="true"
+               enableUpdateByPrimaryKey="false"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"

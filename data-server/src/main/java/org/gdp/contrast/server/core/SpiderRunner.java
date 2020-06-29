@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @date 2020/6/15 18:50
  */
 @Component
-public class SpiderRunner implements CommandLineRunner {
+public class SpiderRunner  {
 //    public static final String url = "https://data.worldbank.org.cn/indicator/NY.GDP.MKTP.CD?most_recent_value_desc=true&view=chart" ;
 //    public static final String url = "https://www.worldometers.info/gdp/gdp-by-country/" ;
     public static final String url = "http://statisticstimes.com/economy/countries-by-gdp.php" ;
@@ -23,16 +23,16 @@ public class SpiderRunner implements CommandLineRunner {
     GdpPageResolver gdpPageResolver;
 
 
-    @Override
+//    @Override
     public void run(String... args) throws Exception {
-        Spider.build()
-            .setScheduler(new QueueScheduler())
-            .setDownloader(new HttpClientPoolDownloader())
-            .setProcessor(gdpPageResolver)
-            .setSaver(new ConsoleSaver())
-            .thread(5)
-            .addUrlSeed(url)
-//            .addRegexRule(regexRule)
-            .run();
+//        Spider.build()
+//            .setScheduler(new QueueScheduler())
+//            .setDownloader(new HttpClientPoolDownloader())
+//            .setProcessor(gdpPageResolver)
+//            .setSaver(new ConsoleSaver())
+//            .thread(5)
+//            .addUrlSeed(url)
+////            .addRegexRule(regexRule)
+//            .run();
     }
 }
