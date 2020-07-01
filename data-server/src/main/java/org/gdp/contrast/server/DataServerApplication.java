@@ -9,9 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 public class DataServerApplication {
-
-    public static final String url = "https://www.douban.com/" ;
-    public static final String regexRule = "+http://.*.jianshu.com/.*";
     public static void main(String[] args) {
         new SpringApplication(DataServerApplication.class).run(args);
     }

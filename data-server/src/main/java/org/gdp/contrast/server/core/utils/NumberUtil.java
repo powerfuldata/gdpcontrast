@@ -15,7 +15,7 @@ public class NumberUtil {
      * @return
      */
     public static Long comma2Long(String content) {
-        if (null == content || "" == content){
+        if (null == content || "".equals(content)){
             return 0L;
         }
         Matcher matcher = NUMBER_PATTERN.matcher(content.replaceAll(",", ""));
